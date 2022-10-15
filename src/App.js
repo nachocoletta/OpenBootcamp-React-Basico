@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Greeting from './components/pure/greeting';
 import Greetingf from './components/pure/greetingF';
@@ -17,6 +17,11 @@ import Observableexample from './components/pure/ObservableExample';
 import Fetchexample from './components/pure/FetchExample';
 import Axiosexample from './components/pure/AxiosExample';
 import Axioscrudexample from './components/pure/AxiosCRUDExample';
+import ContactoComponent from './components/pure/Contacto';
+import { Contacto } from './models/contacto.class';
+
+
+const nuevoContacto = new Contacto("Ignacio","Coletta","ignaciocoletta@gmail.com",true)
 
 function App() {
   return (
@@ -45,7 +50,7 @@ function App() {
       {/* <Father></Father> */}
 
       {/* Ejemplos de Renderizado condicional */}
-      {/* <Optionalrender></Optionalrender> */}
+       {/* <Optionalrender></Optionalrender>  */}
 
       {/* Ejemplos de uso de Formik y Yup */}
       {/* <Loginformik></Loginformik> */}
@@ -56,10 +61,16 @@ function App() {
       {/* <Observableexample></Observableexample> */}
       {/* <Fetchexample></Fetchexample> */}
       {/* <Axiosexample></Axiosexample> */}
-      <Axioscrudexample></Axioscrudexample>
+      {/* <Axioscrudexample></Axioscrudexample> */}
 
       {/* PROYECTO FINAL */}
       {/* <TaskListComponent></TaskListComponent> */}
+
+      {/* Ejercicio sesiones 1, 2 y 3 */}
+      <ContactoComponent 
+                  contacto={nuevoContacto}
+                
+      ></ContactoComponent>
     </div>
   );
 }
