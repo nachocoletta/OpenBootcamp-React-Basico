@@ -19,9 +19,12 @@ import Axiosexample from './components/pure/AxiosExample';
 import Axioscrudexample from './components/pure/AxiosCRUDExample';
 import ContactoComponent from './components/pure/Contacto';
 import { Contacto } from './models/contacto.class';
-
+import { EjemploDePrueba } from './hooks/EjemploDePrueba.jsx';
+import { Contactobis }  from './components/Contactobis.jsx'
+import { Clock, ClockHook } from './components/pure/Sesion-4-5-6';
 
 const nuevoContacto = new Contacto("Ignacio","Coletta","ignaciocoletta@gmail.com",true)
+const nuevoNombre = "Pirulo"
 
 function App() {
   return (
@@ -37,6 +40,7 @@ function App() {
         {/* Ejemplos de uso de HOOKS */}
         {/* <Ejemplo1></Ejemplo1> */}
         {/* <Ejemplo2></Ejemplo2> */}
+        {/* <EjemploDePrueba></EjemploDePrueba> */}
         {/* <MiComponenteConContexto></MiComponenteConContexto> */}
         {/* Todo loq ue hay aquí, es tratado como props.children */}
         {/* <Ejemplo4 nombre="Martín">
@@ -67,10 +71,14 @@ function App() {
       {/* <TaskListComponent></TaskListComponent> */}
 
       {/* Ejercicio sesiones 1, 2 y 3 */}
-      <ContactoComponent 
+      {/* <ContactoComponent 
                   contacto={nuevoContacto}
                 
-      ></ContactoComponent>
+      ></ContactoComponent> */}
+      {/* <Contactobis contacto={nuevoContacto} nuevoNombre={nuevoNombre}></Contactobis> */}
+      {/* Sesiones 4 5 y 6 */}
+      <Clock></Clock>
+      <ClockHook></ClockHook>
     </div>
   );
 }

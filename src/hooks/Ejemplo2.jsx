@@ -20,6 +20,7 @@ const Ejemplo2 = () => {
 
     function incrementar1(){
         setContador1(contador1 + 1);
+        focusOnInput();
     }
 
     function incrementar2(){
@@ -60,12 +61,44 @@ const Ejemplo2 = () => {
      * Cada vez que haya un cambio en contador 2, se ejecuta lo que diga el useEffect()
      */
 
-     useEffect(() => {
-        console.log('CAMBIO EN EL ESTADO DEL CONTADOR 1 / CONTADOR 2');
-        console.log('Mostrando Referencia a elemento del DOM:');
-        console.log(miRef);
-    }, [contador1, contador2]);
+    //  useEffect(() => {
+    //     console.log('CAMBIO EN EL ESTADO DEL CONTADOR 1 / CONTADOR 2');
+    //     console.log('Mostrando Referencia a elemento del DOM:');
+    //     console.log(miRef);
+    // }, [contador1, contador2]);
 
+
+ 
+
+    useEffect ( () => {
+        alert("Cambio contador 1 a ... " + contador1)
+    }, [contador1])
+    // const inputEl = useRef(null);
+    // const onButtonClick = () => {
+    //     // `current` apunta al elemento de entrada de texto montado
+    //     inputEl.current.focus();
+    // };
+    // return (
+    //     <>
+    //     <input ref={inputEl} type="text" />
+    //     <button onClick={onButtonClick}>Focus the input</button>
+    //     </>
+    // );
+    const inputEl = useRef(null);
+
+    const focusOnInput = () => {
+        // alert("entro")
+        console.log(inputEl.current.value);
+        // console.log(inputEl)
+        // inputEl.current.innerText = "HOLA MUNDO"
+        inputEl.current.value = "Holi Jeropa"
+        if(contador1 === 2){
+            setContador1(contador1 + 1)
+            inputEl.current.value = "Holi Jeropa, ya te clavaste 2?"
+        }
+        // console.log("innerHtml es " + inputEl.current.value)
+        // inputEl.current.focus();
+    }
 
     return (
         <div>
@@ -73,9 +106,11 @@ const Ejemplo2 = () => {
             <h2>CONTADOR 1: {contador1}</h2>
             <h2>CONTADOR 2: {contador2}</h2>
             {/* Elemento referenciado */}
-            <h4 ref={miRef}>
+            <input ref={inputEl} type="text" ></input>
+            <button onClick={focusOnInput}>Hacer foco</button>
+            {/* <h4 ref={miRef}>
                 Ejemplo de elemento referenciado
-            </h4>
+            </h4> */}
             {/* Botones para cambiar los contadores */}
             <div>
                 <button onClick={incrementar1}>Incrementar contador 1</button>
