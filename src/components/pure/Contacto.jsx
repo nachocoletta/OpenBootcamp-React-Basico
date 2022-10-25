@@ -9,8 +9,9 @@ const ContactoComponent = ({contacto}) => {
 
     const [connected, setConnected] = useState(conectado); // true
 
-    const cambiarEstadoOnline = () => {
+    const cambiarEstadoOnline = (name) => {
         connected ? setConnected(false) : setConnected(true)
+        alert(`Hola ${name}`)
     }
    
     return (
@@ -21,7 +22,7 @@ const ContactoComponent = ({contacto}) => {
                 <h2>{connected ? 'Conectado' : 'Desconectado'}</h2>
             </div>
             <div>
-                <ContactoCambiarEstadoEnLinea functionChangeState={cambiarEstadoOnline}></ContactoCambiarEstadoEnLinea>
+                <ContactoCambiarEstadoEnLinea functionChangeState={cambiarEstadoOnline} nombre={nombre}></ContactoCambiarEstadoEnLinea>
             </div>
         </div>
     );

@@ -16,8 +16,7 @@ export const ClockHook = () => {
 
     useEffect(() => {
         const tick = () => {
-            setEstado( {edad: estado.edad + 1, fecha: new Date().toLocaleTimeString(), nombre: 'Martín',
-            apellidos: 'San José' } );
+            setEstado( { ...estado, edad: estado.edad + 1, fecha: new Date().toLocaleTimeString() } );
         }    
 
         const timerID = setInterval (
@@ -27,7 +26,7 @@ export const ClockHook = () => {
         return () => {
             clearInterval (timerID);
         };
-    }, [estado.edad, estado.fecha]);
+    }, [estado]);
 
     
     return (

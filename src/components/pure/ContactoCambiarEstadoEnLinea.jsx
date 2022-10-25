@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 // import { ContactoComponent } from './Contacto'
 
 
-export const ContactoCambiarEstadoEnLinea = ({functionChangeState}) => {
+export const ContactoCambiarEstadoEnLinea = ({functionChangeState, nombre}) => {
    
     return (
         <div>
              <div>
-                <button onClick={functionChangeState}>Cambiar estado online</button>
+                <button onClick={() => {functionChangeState(nombre)}}>Cambiar estado online</button>
             </div>
         </div>
     );

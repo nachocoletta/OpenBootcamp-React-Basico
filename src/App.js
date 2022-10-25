@@ -22,8 +22,11 @@ import { Contacto } from './models/contacto.class';
 import { EjemploDePrueba } from './hooks/EjemploDePrueba.jsx';
 import { Contactobis }  from './components/Contactobis.jsx'
 import { Clock, ClockHook } from './components/pure/Sesion-4-5-6';
+import  AlertConParams  from './components/pure/AlertConParams';
+import Contactos from './components/pure/Contactos';
+import ContactoList from './components/container/contactoList';
 
-const nuevoContacto = new Contacto("Ignacio","Coletta","ignaciocoletta@gmail.com",true)
+const nuevoContacto = new Contacto("Joaquin","Coletta","ignaciocoletta@gmail.com",true)
 const nuevoNombre = "Pirulo"
 
 function App() {
@@ -74,11 +77,13 @@ function App() {
       {/* <ContactoComponent 
                   contacto={nuevoContacto}
                 
-      ></ContactoComponent> */}
-      {/* <Contactobis contacto={nuevoContacto} nuevoNombre={nuevoNombre}></Contactobis> */}
+      ></ContactoComponent>
+      <Contactobis contacto={nuevoContacto} nuevoNombre={nuevoNombre}></Contactobis> */}
       {/* Sesiones 4 5 y 6 */}
-      <Clock></Clock>
-      <ClockHook></ClockHook>
+      {/* <Clock></Clock>
+      <ClockHook></ClockHook> */}
+      {/* <AlertConParams></AlertConParams> */}
+      <ContactoList></ContactoList>  
     </div>
   );
 }
