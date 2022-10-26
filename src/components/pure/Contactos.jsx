@@ -17,8 +17,8 @@ const Contactos = ( { contacto , remove, changeStatus} ) => {
             </td>
             <td className='align-middle'>
                 <span>{contacto.conectado ? 
-                        <i className='bi-toggle-on task-action' style={{color: 'green'}} onClick={() => {changeStatus(contacto); alert('Disconnected')}}></i> : 
-                        <i className='bi-toggle-off task-action' style={{color: 'red'}} onClick={() => {changeStatus(contacto); alert("Connected")}}></i>}
+                        <i className='bi-toggle-on task-action' style={{color: 'green'}} onClick={() => {changeStatus(contacto)}}></i> : 
+                        <i className='bi-toggle-off task-action' style={{color: 'red'}} onClick={() => {changeStatus(contacto)}}></i>}
                 </span>      
             </td>
             <td className='align-middle'>

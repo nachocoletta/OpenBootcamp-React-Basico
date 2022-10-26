@@ -25,6 +25,7 @@ import { Clock, ClockHook } from './components/pure/Sesion-4-5-6';
 import  AlertConParams  from './components/pure/AlertConParams';
 import Contactos from './components/pure/Contactos';
 import ContactoList from './components/container/contactoList';
+import Sesiones1011y12 from './components/pure/Sesiones 10-11-12';
 
 const nuevoContacto = new Contacto("Joaquin","Coletta","ignaciocoletta@gmail.com",true)
 const nuevoNombre = "Pirulo"
@@ -83,7 +84,8 @@ function App() {
       {/* <Clock></Clock>
       <ClockHook></ClockHook> */}
       {/* <AlertConParams></AlertConParams> */}
-      <ContactoList></ContactoList>  
+      {/* <ContactoList></ContactoList>   */}
+      <Sesiones1011y12></Sesiones1011y12>
     </div>
   );
 }
