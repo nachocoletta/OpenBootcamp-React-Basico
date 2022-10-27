@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Contactos from '../pure/Contactos'
 import { Contacto } from '../../models/contacto.class';
 import ContactoForm from '../pure/forms/contactoForm';
+import ContactoFormik from '../pure/forms/contactoFormik';
 
 
 
@@ -82,6 +83,7 @@ const ContactoList = () => {
         <div>
             {personaTable}
             <ContactoForm add={addPerson}></ContactoForm>
+            <ContactoFormik add={addPerson}></ContactoFormik>
         </div>
 
     );

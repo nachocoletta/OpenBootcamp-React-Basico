@@ -26,6 +26,7 @@ import  AlertConParams  from './components/pure/AlertConParams';
 import Contactos from './components/pure/Contactos';
 import ContactoList from './components/container/contactoList';
 import Sesiones1011y12 from './components/pure/Sesiones 10-11-12';
+import ContactoFormik from './components/pure/forms/contactoFormik';
 
 const nuevoContacto = new Contacto("Joaquin","Coletta","ignaciocoletta@gmail.com",true)
 const nuevoNombre = "Pirulo"
@@ -75,17 +76,18 @@ function App() {
       {/* <TaskListComponent></TaskListComponent> */}
 
       {/* Ejercicio sesiones 1, 2 y 3 */}
-      {/* <ContactoComponent 
+      {/* <ContactoComponent
                   contacto={nuevoContacto}
-                
+
       ></ContactoComponent>
       <Contactobis contacto={nuevoContacto} nuevoNombre={nuevoNombre}></Contactobis> */}
       {/* Sesiones 4 5 y 6 */}
       {/* <Clock></Clock>
       <ClockHook></ClockHook> */}
       {/* <AlertConParams></AlertConParams> */}
-      {/* <ContactoList></ContactoList>   */}
-      <Sesiones1011y12></Sesiones1011y12>
+      <ContactoList></ContactoList>
+      {/* <ContactoFormik></ContactoFormik> */}
+      {/* <Sesiones1011y12></Sesiones1011y12> */}
     </div>
   );
 }

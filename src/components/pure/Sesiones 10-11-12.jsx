@@ -11,7 +11,7 @@
 // Por último, un método en el que cuando se pulsa dos veces en el componente, se tiene que detener el cambio de color.
 
 // import { rgbToHex } from '@mui/material';
-import React, { useState }from 'react';
+import React, { useState } from 'react';
 
 
 
