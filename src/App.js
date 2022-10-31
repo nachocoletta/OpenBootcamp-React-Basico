@@ -1,5 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
 import Greeting from './components/pure/greeting';
 import Greetingf from './components/pure/greetingF';
 import TaskListComponent from './components/container/task_list';
@@ -27,11 +28,19 @@ import Contactos from './components/pure/Contactos';
 import ContactoList from './components/container/contactoList';
 import Sesiones1011y12 from './components/pure/Sesiones 10-11-12';
 import ContactoFormik from './components/pure/forms/contactoFormik';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import LoginformikPropio from './components/pure/forms/loginFormikPropio';
+import RegisterFormikPropio from './components/pure/forms/registerFormikPropio';
+import { useContext } from 'react';
 
-const nuevoContacto = new Contacto("Joaquin","Coletta","ignaciocoletta@gmail.com",true)
-const nuevoNombre = "Pirulo"
+
+
 
 function App() {
+
+
+  // const { usuario } = useContext( AuthContext );
+
   return (
     <div className="App">
       {/* <header className="App-header"> */}
@@ -85,8 +94,19 @@ function App() {
       {/* <Clock></Clock>
       <ClockHook></ClockHook> */}
       {/* <AlertConParams></AlertConParams> */}
-      <ContactoList></ContactoList>
-      {/* <ContactoFormik></ContactoFormik> */}
+      <Router>
+        <Switch>
+          
+          <Route exact path='/' component={LoginformikPropio} />
+          <Route exact path='/login' component={LoginformikPropio} />
+          <Route exact path='/contacto' children={() => { return sessionStorage.getItem("Nombre") 
+                                                          ?  <ContactoList /> 
+                                                          : <Redirect to='/login' />   }
+                                                  } />
+          <Route exact path='/register' component={RegisterFormikPropio} />
+          <Route path="*" children={() => { return <h1> ERROR 404 - Page Not Found </h1> }} />
+        </Switch>
+      </Router>
       {/* <Sesiones1011y12></Sesiones1011y12> */}
     </div>
   );

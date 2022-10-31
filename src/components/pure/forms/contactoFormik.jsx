@@ -23,7 +23,7 @@ const contactoSchema = Yup.object().shape(
     }
 );
 
-const ContactoFormik = ( {add}) => {
+const ContactoFormik = ( {add, sort} ) => {
     
     const initialCredentials = {
         nombre: '',
@@ -33,26 +33,31 @@ const ContactoFormik = ( {add}) => {
     }
 
     const resetForm = () => {
-        // alert(`${refNombre.current.value}`);
+        alert(`${refNombre.current.value}`);
         refNombre.current.value =  '';
         refApellido.current.value = '';
         refEmail.current.value = '';
         // alert(`${refNombre.current.value}`);
     }
-    
-    const addContacto = () => {
+
+  
+    const orderList = () => {
+
+    }
+    const addContacto = (e) => {
         // e.preventDefault();
         const newContacto = new Contacto(refNombre.current.value,
                                          refApellido.current.value,
                                          refEmail.current.value,
-                                         true);
+                                         refConectado.current.value);
         add(newContacto);
-        resetForm();
         // refNombre.current.value = refApellido.current.value = refEmail.current.value = '';
     }
+
     const refNombre = useRef();
     const refApellido = useRef();
     const refEmail = useRef();
+    const refConectado = useRef();
     
     return (
         <div style={{margin: "20px"}}>
@@ -60,7 +65,33 @@ const ContactoFormik = ( {add}) => {
             <Formik
                 initialValues={ initialCredentials }
                 validationSchema={ contactoSchema }
-                onSubmit={ addContacto }
+                // onSubmit={ async () => { await addContacto(); } }
+                // resetForm to clear formik fields after submit
+                // onSubmit={(values, { resetForm }) => {
+
+                //     console.log(values);
+                //     addContacto();
+                //     resetForm({values: ''})}}
+                onSubmit={ async ( values, { resetForm } ) => { 
+                                            console.log(values)
+                                            await new Promise((r) => {setTimeout(r, 2000)})
+                                            addContacto(); 
+                                            resetForm({values: ''})
+                                            // await addContacto();
+                                            // await resetForm() 
+                                        } 
+                        }
+                // onSubmit={async (values, { setSubmitting }) => {
+                //             // setSubmitting(true);
+                //             addContacto();
+                //             // await sleep(500);
+                //             // setSubmitting(false);
+                //             }}
+                // onSubmit={() => {async (values) => (
+                //     await new Promise((r) => setTimeout(r, 1000))
+                //     alert(JSON.stringify(values, null, 2));
+                //         addContacto();
+                // )}}
             >
 
             {({
@@ -109,8 +140,27 @@ const ContactoFormik = ( {add}) => {
                                     <ErrorMessage name="email" component='div'></ErrorMessage>
                                 )
                             }
+
+            <label htmlFor="conectado">conectado</label>
+            <Field id="conectado" 
+                    type="conectado" 
+                    name="conectado" 
+                    placeholder="example@email.com"
+                    innerRef={refConectado} />
+
+            {/* Email Errors */}
+            {
+                errors.conectado && touched.conectado && 
+                (
+                    <ErrorMessage name="conectado" component='div'></ErrorMessage>
+                )
+            }
+                {/* <button type="submit" onClick={() => orderList()}>Ordenar</button> */}
                 <button type="submit">Crear Usuario</button>
-                {isSubmitting ? (<p>Creando nuevo usuario...</p>) : null}
+                {isSubmitting ? 
+                    (<p>Creando nuevo usuario...</p>) 
+                    : (null)
+                }
                 </Form>
               )
             }

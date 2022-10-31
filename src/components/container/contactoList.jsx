@@ -26,26 +26,46 @@ const ContactoList = () => {
     const changeStatus = (persona) => {
         const index = personas.indexOf(persona);
         const tempChangeStatus = [...personas];
+        // console.log(tempChangeStatus[index].conectado);
         tempChangeStatus[index].conectado = !tempChangeStatus[index].conectado;
         setPersonas(tempChangeStatus);
     }
 
     const addPerson = (persona) => {
+        // console.log(`Persona ${persona.conectado}`)
         const tempAddPersona = [...personas];
         tempAddPersona.push(persona);
+        
+        // console.log(tempAddPersona);
         setPersonas(tempAddPersona);
+        // console.log(personas.length)
     }
     
+    const sortPerson = (arrayPersonas) => {
+        const tempSortPersonas = [...personas]; 
+        tempSortPersonas.sort( (a,b) => {
+            if(a.nombre !== b.nombre)
+                if(a.nombre.toLowerCase() < b.nombre.toLowerCase())
+                    return -1;
+                else
+                    return 1;
+            else
+                return 0;
+        })
+        setPersonas(tempSortPersonas);
+    }
     const Table = () => {
 
         return (
             <table>
                 <thead>
-                    <th scope='col'>Nombre</th>
-                    <th scope='col'>Apellido</th>
-                    <th scope='col'>Email</th>
-                    <th scope='col'>Conectado</th>
-                    <th scope='col'>Eliminar</th>
+                    <tr>
+                        <th scope='col'>Nombre</th>
+                        <th scope='col'>Apellido</th>
+                        <th scope='col'>Email</th>
+                        <th scope='col'>Conectado</th>
+                        <th scope='col'>Eliminar</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {
@@ -74,7 +94,7 @@ const ContactoList = () => {
         personaTable = (
         <div>
             <h3> There are no persons to show</h3>
-            <h4>Please, create one</h4>
+            <h4> Please, create one</h4>
         </div>
         )
     }
@@ -83,7 +103,8 @@ const ContactoList = () => {
         <div>
             {personaTable}
             <ContactoForm add={addPerson}></ContactoForm>
-            <ContactoFormik add={addPerson}></ContactoFormik>
+            <ContactoFormik add={addPerson} sort={sortPerson}></ContactoFormik>
+            <button onClick={ () => sortPerson()}>Ordenar</button>
         </div>
 
     );

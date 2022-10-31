@@ -1,11 +1,12 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 
 // Models
 import { ROLES } from '../../../models/roles.enum';
 
-const Registerformik = () => {
+const RegisterFormikPropio = () => {
 
     const initialValues = {
         username: '',
@@ -45,6 +46,7 @@ const Registerformik = () => {
 
     return (
         <div>
+            <Link to='/login'>Login</Link>
             <h4>Register Formik</h4>
             <Formik
                 initialValues = {initialValues}
@@ -128,4 +130,4 @@ const Registerformik = () => {
     );
 }
 
-export default Registerformik;
+export default RegisterFormikPropio;
