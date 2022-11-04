@@ -65,10 +65,12 @@ const Fetchexample = () => {
             });
     }
 
-    const authUser = () => {
-        login('eve.holt@reqres.in', 'cityslicka')
+    const authUser = async () => {
+        await login('eve.holt@reqres.in', 'cityslicka')
             .then((response) => {
-                console.log('TOKEN', response.token);
+                // alert('ok')
+                console.log('Response: ', response)
+                // console.log('TOKEN', response.token);
                 sessionStorage.setItem('token', response.token)
             })
             .catch((error) => {
