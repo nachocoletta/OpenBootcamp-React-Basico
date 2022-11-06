@@ -1,5 +1,5 @@
 import { Button } from '@mui/material';
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect } from 'react';
 import { getRandomJoke } from '../../services/axiosServiceChuck.js';
 
 const AxiosChuckNorris = () => {
@@ -7,12 +7,14 @@ const AxiosChuckNorris = () => {
     const [joke, setJoke] = useState([]);
     const [notaLikes, setNotaLikes] = useState(0);
     const [notaDislikes, setNotaDislikes] = useState(0);
+    const [disableButton, setDisableButton] = useState(false);
+    const [disableNewJoke, setDisableNewJoke] = useState(false)
 
     useEffect( () => {
         getRandomJoke()
             .then( (response) => {
                 if(response.status === 200){
-                    console.log(response.data.value);
+                    // console.log(response.data.value);
                     setJoke(response.data);
                 }
             })
@@ -24,7 +26,7 @@ const AxiosChuckNorris = () => {
         getRandomJoke()
             .then( (response) => {
                 if(response.status === 200){
-                    console.log(response.data.value);
+                    // console.log(response.data.value);
                     setJoke(response.data);
                 }
             })
@@ -37,6 +39,13 @@ const AxiosChuckNorris = () => {
         boton === 'botonLike' ? setNotaLikes(notaLikes + 1 ) : setNotaDislikes ( notaDislikes + 1 )
         
     }
+
+    const habilitarDeshabilitarLikeDislike = () => {
+        !disableButton ? setDisableButton(true) : setDisableButton(false);
+       
+    }
+
+   
 
     return (
         <div>
@@ -52,9 +61,27 @@ const AxiosChuckNorris = () => {
             </div>
 
             <div style={{"margin": "5px"}}>
-                <button style={{"margin": "5px"}} onClick={ () => { generateRandomJoke() }}>New Joke</button>
-                <Button style={{"margin": "5px"}} variant='contained' onClick={() => sumarLikeOrDislike('botonLike')} >+</Button>
-                <Button style={{"margin": "5px"}} variant='contained' onClick={() => sumarLikeOrDislike('botonDislike')}>-</Button>
+                {/* <button style={{"margin": "5px"}} 
+                        onClick={ () => { generateRandomJoke();
+                            setDisableButton(false) 
+                                           }}
+                        disabled={disableNewJoke}>New Joke</button> */}
+                <Button style={{"margin": "5px"}} 
+                        variant='contained' 
+                        onClick={ () => { generateRandomJoke();
+                            setDisableButton(false) 
+                                           }}
+                        disabled={disableNewJoke}>New Joke</Button>
+                <Button style={{"margin": "5px"}} 
+                        variant='contained' 
+                        onClick={() => {sumarLikeOrDislike('botonLike');
+                                       habilitarDeshabilitarLikeDislike()
+                        } }
+                        disabled={disableButton}>+</Button>
+                <Button style={{"margin": "5px"}} 
+                        variant='contained' 
+                        onClick={() => {sumarLikeOrDislike('botonDislike'); habilitarDeshabilitarLikeDislike() }} 
+                        disabled={disableButton}>-</Button>
             </div>
         </div>
     );

@@ -28,12 +28,12 @@ import Contactos from './components/pure/Contactos';
 import ContactoList from './components/container/contactoList';
 import Sesiones1011y12 from './components/pure/Sesiones 10-11-12';
 import ContactoFormik from './components/pure/forms/contactoFormik';
-import { BrowserRouter as Router, Route, Switch, Redirect, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import LoginformikPropio from './components/pure/forms/loginFormikPropio';
 import RegisterFormikPropio from './components/pure/forms/registerFormikPropio';
+import { useContext } from 'react';
 import Notfoundpage from './pages/404/NotFoundPage';
 import AxiosChuckNorris from './components/pure/AxiosChuckNorris';
-
 
 
 
@@ -96,7 +96,32 @@ function App() {
       {/* <Clock></Clock>
       <ClockHook></ClockHook> */}
       {/* <AlertConParams></AlertConParams> */}
-      
+      <Router>
+        <Switch>
+          
+          <Route exact path='/' children={() => { return sessionStorage.getItem("Nombre") 
+                                                          ?  <ContactoList /> 
+                                                          : <Redirect to='/login' />
+
+          }}
+          />
+          {/* <Route exact path='/' component={LoginformikPropio} /> */}
+
+          <Route exact path='/login' children={() => { return sessionStorage.getItem("Nombre") 
+                                                          ?  <Redirect to='/contacto' />
+                                                          : <LoginformikPropio />
+
+          }} />
+          {/* <Route exact path='/login' component={LoginformikPropio} /> */}
+
+          <Route exact path='/contacto' children={() => { return sessionStorage.getItem("Nombre") 
+                                                          ?  <ContactoList /> 
+                                                          : <Redirect to='/login' />   }
+                                                  } />
+          <Route exact path='/register' component={RegisterFormikPropio} />
+          <Route path="*" children={() => { return <Notfoundpage /> }} />
+        </Switch>
+      </Router>
       {/* <Sesiones1011y12></Sesiones1011y12> */}
     </div>
   );
